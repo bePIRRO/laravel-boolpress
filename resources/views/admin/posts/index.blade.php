@@ -8,15 +8,15 @@
               <tr>
                 <th scope="col">Titolo</th>
                 <th scope="col">Scritto il</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Funzioni</th>
               </tr>
             </thead>
             <tbody>
                 @forelse ($posts as $post)
                 <tr>
                   <td>{{$post->title}}</td>
-                  <td>{{$post->created_at}}</td>
-                  <td> <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-primary">Vai</a> </td>
+                  <td>{{$post->getFormattedDate("created_at")}}</td>
+                  {{-- <td> <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-primary">Vai</a></td> --}}
                 </tr>
                 @empty
                     <tr>
