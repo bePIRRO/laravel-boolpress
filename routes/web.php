@@ -19,8 +19,13 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
-
-Route::middleware('auth')->name('admin')->prefix('admin')->namespace('Admin')->group(function() {
+//! Routes admin
+Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function() {
     Route::get('/', 'HomeController@index')->name('.home');
     Route::resource('posts', 'PostController');
 });
+
+//? routes guest
+Route::get("{any?}", function() {
+    return view("guest.home");
+})->where("any", ".*");

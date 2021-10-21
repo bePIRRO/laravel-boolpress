@@ -2,7 +2,15 @@
 
 @section('content')
     <div class="container">
-        <h1>I miei post</h1>
+      <div class="row">
+        <div class="col-6">
+            <h1 class="">I miei post</h1>
+          </div>
+          <div class="col-6 text-right">
+            <a href="" class="btn btn-success">Crea nuovo post</a>
+          </div>
+      </div>
+      
         <table class="table">
             <thead>
               <tr>
@@ -15,8 +23,8 @@
                 @forelse ($posts as $post)
                 <tr>
                   <td>{{$post->title}}</td>
-                  <td>{{$post->getFormattedDate("created_at")}}</td>
-                  <td> <a href=" {{-- {{route('admin.posts.show', $post->id)}} --}}" class="btn btn-primary">Vai</a></td>
+                  <td>{{$post->getFormattedDate("created_at", "d/m/Y")}}</td>
+                  <td> <a href=" {{route('admin.posts.show', $post->id)}}" class="btn btn-primary">Vai</a></td>
                 </tr>
                 @empty
                     <tr>
