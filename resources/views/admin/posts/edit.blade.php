@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>
-    PAGINA DI EDIT
-</h1>
-@endsection
+<div class="container">
+    <header>
+        <h1>Modifica post</h1>
+    </header>
+        <section id="form">
+            @include("includes.admin.posts.form")
+        </section>
+
+</div>
+@endsection 
