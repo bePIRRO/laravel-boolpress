@@ -3,7 +3,7 @@
 @section("content")
     <div class="container">
       @if(session("alert-message"))
-          <div class="alert alert-{{session("alert-type")}}">
+          <div class="alert alert-{{session("alert-type")}}" id="alert">
             {{ session("alert-message") }}
           </div>
       @endif    
@@ -28,7 +28,7 @@
                   <td class="d-flex justify-content-end">
                     <a href=" {{route("admin.posts.show", $post->id)}}" class="btn btn-primary">Vai</a>
                     <a href=" {{route("admin.posts.edit", $post->id)}}" class="btn btn-warning mx-2">Modifica</a>
-                    <form action="{{ route("admin.posts.destroy", $post->id)}}" method="post">
+                    <form action="{{ route("admin.posts.destroy", $post->id)}}" method="post" class="delete-button">
                       @csrf
                       @method("DELETE")
                       <button type="submit" class="btn btn-danger">Elimina</button>
@@ -42,11 +42,30 @@
                 @endforelse
             </tbody>
           </table>
+
+          <footer class="d-flex justify-content-end">
+            {{$posts->links()}}
+          </footer>
     </div>
 
     @section('scripts')
         <script>
-          
+          const deleteButtons = document.querySelectorAll(".delete-button");
+          deleteButtons.forEach(form => {
+            form.addEventListener("submit", function(e){
+              e.preventDefault();
+              const conf = confirm("Vuoi eliminare il post?");
+              if (conf) {
+                this.submit();
+                /*setTimeout(function() {
+                  let style = document.createElement("style");
+                  style.type = "text/css";
+                  styile.innerHTML = "d-none"
+                  document.getElementById("alert").className = "d-none";
+                }, 5000);*/
+              }
+            });
+          });
         </script>
     @endsection
 @endsection
