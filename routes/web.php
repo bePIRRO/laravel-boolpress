@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('guest.home');
 });
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 //! Routes admin
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function() {

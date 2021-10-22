@@ -1,22 +1,23 @@
-@extends('layouts.app')
+@extends("layouts.app")
 
-@section('content')
+@section("content")
     <div class="container">
-      <div class="row">
-        <div class="col-6">
-            <h1 class="">I miei post</h1>
+      @if(session("alert-message"))
+          <div class="alert alert-{{session("alert-type")}}">
+            {{ session("alert-message") }}
           </div>
-          <div class="col-6 text-right">
-            <a href="" class="btn btn-success">Crea nuovo post</a>
+      @endif    
+        <div class="my-5 d-flex justify-content-between align-items-center">
+          <h1 class="">I miei post</h1>
+          <a href="{{route("admin.posts.create")}}" class="btn btn-success">Nuovo post</a>
           </div>
-      </div>
-      
-        <table class="table">
+
+        <table class="table bg-white">
             <thead>
               <tr>
                 <th scope="col">Titolo</th>
                 <th scope="col">Scritto il</th>
-                <th scope="col">Funzioni</th>
+                <th scope="col" class="text-center">Funzioni</th>
               </tr>
             </thead>
             <tbody>
@@ -24,7 +25,15 @@
                 <tr>
                   <td>{{$post->title}}</td>
                   <td>{{$post->getFormattedDate("created_at", "d/m/Y")}}</td>
-                  <td> <a href=" {{route('admin.posts.show', $post->id)}}" class="btn btn-primary">Vai</a></td>
+                  <td class="d-flex justify-content-end">
+                    <a href=" {{route("admin.posts.show", $post->id)}}" class="btn btn-primary">Vai</a>
+                    <a href=" {{route("admin.posts.edit", $post->id)}}" class="btn btn-warning mx-2">Modifica</a>
+                    <form action="{{ route("admin.posts.destroy", $post->id)}}" method="post">
+                      @csrf
+                      @method("DELETE")
+                      <button type="submit" class="btn btn-danger">Elimina</button>
+                    </form>
+                  </td>
                 </tr>
                 @empty
                     <tr>
@@ -34,4 +43,10 @@
             </tbody>
           </table>
     </div>
+
+    @section('scripts')
+        <script>
+          
+        </script>
+    @endsection
 @endsection
