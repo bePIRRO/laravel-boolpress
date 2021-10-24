@@ -10,53 +10,25 @@
                 class="my-3"
             />
         </div>
-
-        <!-- PAGINATION -->
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li
-                    class="page-item"
-                    v-if="pagination.currentPage > 1"
-                    @click="getPosts(pagination.currentPage - 1)"
-                >
-                    <a class="page-link" tabindex="-1" aria-disabled="true">
-                        Precedente
-                    </a>
-                </li>
-
-                <li
-                    v-for="i in pagination.lastPage"
-                    :key="i"
-                    class="page-item"
-                    :class="{ active: pagination.currentPage === i }"
-                    @click="getPosts(i)"
-                >
-                    <a class="page-link">{{ i }}</a>
-                </li>
-
-                <li
-                    class="page-item"
-                    v-if="pagination.lastPage > pagination.currentPage"
-                    @click="getPosts(pagination.currentPage + 1)"
-                >
-                    <a class="page-link">
-                        Successivo
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <Pagination
+            :lastPage="pagination.lastPage"
+            :currentPage="pagination.currentPage"
+            @onPageChange="changePage"
+        />
     </div>
 </template>
 
 <script>
 import PostCard from "./PostCard.vue";
 import Loader from "../Loader.vue";
+import Pagination from "../Pagination.vue";
 
 export default {
     name: "PostList",
     components: {
         PostCard,
-        Loader
+        Loader,
+        Pagination
     },
     data() {
         return {
@@ -86,6 +58,10 @@ export default {
                 .then(() => {
                     this.isLoading = false;
                 });
+        },
+
+        changePage(page) {
+            this.getPosts(page);
         }
     },
     created() {
@@ -93,9 +69,3 @@ export default {
     }
 };
 </script>
-
-<style lang="scss" scoped>
-.page-item {
-    cursor: pointer;
-}
-</style>
