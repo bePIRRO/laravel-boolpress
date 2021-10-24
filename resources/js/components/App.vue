@@ -1,16 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <Header :title="title" />
-                    <PostList />
-                    <div class="card-body">
-                        Sito in costruzione
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div>
+        <Header :title="title" />
+        <PostList />
     </div>
 </template>
 

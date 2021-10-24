@@ -1,7 +1,16 @@
 <template>
-    <section id="post-list">
-        <h2>I miei post</h2>
-        <PostCard v-for="post in posts" :key="post.id" />
+    <section class="container">
+        <div class="row justify-content-center">
+            <div id="post-list">
+                <h2>I miei post</h2>
+                <PostCard
+                    v-for="post in posts"
+                    :key="post.id"
+                    :post="post"
+                    class="my-3"
+                />
+            </div>
+        </div>
     </section>
 </template>
 

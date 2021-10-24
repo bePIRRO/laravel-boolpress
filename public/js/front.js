@@ -2279,15 +2279,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2340,8 +2331,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PostCard"
+  name: "PostCard",
+  props: ["post"],
+  methods: {
+    getFormattedDate: function getFormattedDate(date) {
+      var postDate = new Date(date);
+      var day = postDate.getDate();
+      var month = postDate.getMonth() + 1;
+      var year = postDate.getFullYear();
+      if (day < 0) day = "0" + day;
+      if (month < 0) month = "0" + month;
+      return "".concat(day, "/").concat(month, "/").concat(year);
+    }
+  }
 });
 
 /***/ }),
@@ -2356,6 +2369,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PostCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostCard.vue */ "./resources/js/components/Posts/PostCard.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38054,28 +38076,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c(
-          "div",
-          { staticClass: "card" },
-          [
-            _c("Header", { attrs: { title: _vm.title } }),
-            _vm._v(" "),
-            _c("PostList"),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    Sito in costruzione\n                "
-              )
-            ])
-          ],
-          1
-        )
-      ])
-    ])
-  ])
+  return _c(
+    "div",
+    [
+      _c("Header", { attrs: { title: _vm.title } }),
+      _vm._v(" "),
+      _c("PostList")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38125,7 +38134,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Post Card\n")])
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header" }, [_vm._v(_vm._s(_vm.post.title))]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("p", [_vm._v(_vm._s(_vm.post.content))]),
+      _vm._v(" "),
+      _c("footer", { staticClass: "blockquote-footer" }, [
+        _c("time", [
+          _c("small", [
+            _vm._v(
+              "\n                    Pubblicato il: " +
+                _vm._s(_vm.getFormattedDate(_vm.post.created_at)) +
+                "\n                "
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38149,18 +38176,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { attrs: { id: "post-list" } },
-    [
-      _c("h2", [_vm._v("I miei post")]),
-      _vm._v(" "),
-      _vm._l(_vm.posts, function(post) {
-        return _c("PostCard", { key: post.id })
-      })
-    ],
-    2
-  )
+  return _c("section", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "div",
+        { attrs: { id: "post-list" } },
+        [
+          _c("h2", [_vm._v("I miei post")]),
+          _vm._v(" "),
+          _vm._l(_vm.posts, function(post) {
+            return _c("PostCard", {
+              key: post.id,
+              staticClass: "my-3",
+              attrs: { post: post }
+            })
+          })
+        ],
+        2
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
