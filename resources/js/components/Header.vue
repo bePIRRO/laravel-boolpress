@@ -1,5 +1,5 @@
 <template>
-    <h1 class="text-center">Benvenuti su {{ title }}</h1>
+    <h1 class="text-center mt-3 text-primary">Benvenuti su {{ title }}</h1>
 </template>
 
 <script>

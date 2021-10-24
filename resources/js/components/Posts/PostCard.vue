@@ -3,7 +3,8 @@
         <div class="card-header">{{ post.title }}</div>
         <div class="card-body">
             <p>{{ post.content }}</p>
-            <footer class="blockquote-footer">
+            <hr />
+            <footer class="blockquote-footer text-right">
                 <time>
                     <small>
                         Pubblicato il: {{ getFormattedDate(post.created_at) }}
