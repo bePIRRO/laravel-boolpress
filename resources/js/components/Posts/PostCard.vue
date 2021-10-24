@@ -6,9 +6,7 @@
             <hr />
             <footer class="blockquote-footer text-right">
                 <time>
-                    <small>
-                        Pubblicato il: {{ getFormattedDate(post.created_at) }}
-                    </small>
+                    Pubblicato il: {{ getFormattedDate(post.created_at) }}
                 </time>
             </footer>
         </div>
