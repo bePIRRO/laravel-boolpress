@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <Header :title="title" />
-
+                    <PostList />
                     <div class="card-body">
                         Sito in costruzione
                     </div>
@@ -16,13 +16,15 @@
 
 <script>
 import Header from "./Header.vue";
+import PostList from "./Posts/PostList.vue";
 export default {
     name: "App",
+    components: {
+        Header,
+        PostList
+    },
     data() {
         return { title: "Il mio Blog" };
-    },
-    components: {
-        Header
     }
 };
 </script>
