@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <h1>{{$post->title}}</h1>
+        <h4>Categoria: @if ($post->category) {{$post->category->name}} @else Nessuna @endif</h4>
         <p class="mt-5">{{$post->content}}</p>
         <figure>
             <img src="{{$post->image}}" alt="" class="img-fluid">

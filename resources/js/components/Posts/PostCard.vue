@@ -4,6 +4,13 @@
         <div class="card-body">
             <p>{{ post.content }}</p>
             <hr />
+            <figure>
+                <img
+                    :src="getImg(post.image)"
+                    class="img-fluid"
+                    :alt="post.title"
+                />
+            </figure>
             <footer class="blockquote-footer text-right">
                 <time>
                     Pubblicato il: {{ getFormattedDate(post.created_at) }}
@@ -28,6 +35,10 @@ export default {
             if (month < 0) month = "0" + month;
 
             return `${day}/${month}/${year}`;
+        },
+
+        getImg() {
+            return require(`${this.post.image}`);
         }
     }
 };

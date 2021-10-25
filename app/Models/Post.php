@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class Post extends Model
 {
@@ -20,6 +21,7 @@ class Post extends Model
         "title",
         "content",
         "image",
-        "slug"
+        "slug",
+        "category_id",
     ];
 }

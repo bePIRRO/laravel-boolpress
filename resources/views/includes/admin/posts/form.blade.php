@@ -22,6 +22,18 @@
         <input type="text" class="form-control" id="image" name="image" placeholder="Inserisci l'Url dell'immagine" value="{{$post->image}}">
     </div>
 
+    <div class="form-group">
+        <label for="category_id">Categoria</label>
+        <select name="category_id" id="category_id" class="form-control">
+            <option>Nessuna categoria</option>
+            @foreach ($categories as $category)
+                <option @if(old("category_id") == $category->id) selected @endif value="{{$category->id}}">
+                    {{$category->name}}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
     <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-success">Crea</button>
         <a href="{{route("admin.posts.index")}}" class="btn btn-secondary">Indietro</a>

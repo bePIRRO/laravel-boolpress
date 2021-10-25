@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy("id", "desc")->paginate(10);
-        return view('admin.posts.index', compact('posts'));
+        return view("admin.posts.index", compact("posts"));
     }
 
     /**
@@ -27,8 +28,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.posts.create', ["post" => new Post()]);
+        $post = new Post();
+        $categories = Category::all();
+        return view("admin.posts.create", compact("post", "categories"));
     }
 
     /**
@@ -42,8 +44,10 @@ class PostController extends Controller
         $request->validate([
             "title" => "required|string|unique:posts|min:3",
             "content" => "required|string",
-            "image" => "string"
-        ], [
+            "image" => "string",
+            "category_id" => "nullable|exists:categories,id",
+        ],
+        [
             "required" => "Il campo :attribute è obbligatorio",
             "min" => "Il minimo di caratteri per il campo :attribute è :min",
             "title.unique" => "Il titolo esiste già"
