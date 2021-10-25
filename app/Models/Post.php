@@ -11,6 +11,11 @@ class Post extends Model
         return Carbon::create($this->$column)->format($format);
     }
     
+    public function category()
+    {
+        return $this->belongsTo("use App\Models\Category");
+    }
+    
     protected $fillable = [
         "title",
         "content",
