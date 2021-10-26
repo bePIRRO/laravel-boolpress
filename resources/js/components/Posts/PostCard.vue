@@ -5,11 +5,7 @@
             <p>{{ post.content }}</p>
             <hr />
             <figure>
-                <img
-                    :src="getImg(post.image)"
-                    class="img-fluid"
-                    :alt="post.title"
-                />
+                <img :src="post.image" class="img-fluid" :alt="post.title" />
             </figure>
             <footer class="blockquote-footer text-right">
                 <time>
@@ -18,6 +14,11 @@
             </footer>
         </div>
     </div>
+    <!-- <div>
+        {{ post.title }}
+        {{ post.content }}
+        {{ post.image }}
+    </div> -->
 </template>
 
 <script>
@@ -35,10 +36,6 @@ export default {
             if (month < 0) month = "0" + month;
 
             return `${day}/${month}/${year}`;
-        },
-
-        getImg() {
-            return require(`${this.post.image}`);
         }
     }
 };

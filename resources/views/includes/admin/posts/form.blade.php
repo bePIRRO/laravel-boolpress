@@ -35,7 +35,7 @@
     </div>
 
     <div class="d-flex justify-content-between">
-        <button type="submit" class="btn btn-success">Crea</button>
+        <button type="submit" class="btn btn-success">{{$save}}</button>
         <a href="{{route("admin.posts.index")}}" class="btn btn-secondary">Indietro</a>
     </div>
 </form>

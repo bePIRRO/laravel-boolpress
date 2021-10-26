@@ -16,6 +16,7 @@
             <thead>
               <tr>
                 <th scope="col">Titolo</th>
+                <th scope="col">Categoria</th>
                 <th scope="col">Scritto il</th>
                 <th scope="col" class="text-center">Funzioni</th>
               </tr>
@@ -24,6 +25,11 @@
                 @forelse ($posts as $post)
                 <tr>
                   <td>{{$post->title}}</td>
+                  @if($post->category)
+                  <td>{{$post->category["name"]}}</td>
+                  @else
+                  <td>---</td>
+                  @endif
                   <td>{{$post->getFormattedDate("created_at", "d/m/Y")}}</td>
                   <td class="d-flex justify-content-end">
                     <a href=" {{route("admin.posts.show", $post->id)}}" class="btn btn-primary">Vai</a>

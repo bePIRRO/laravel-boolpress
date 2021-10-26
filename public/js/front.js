@@ -2422,6 +2422,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: ["post"],
@@ -2434,9 +2435,6 @@ __webpack_require__.r(__webpack_exports__);
       if (day < 0) day = "0" + day;
       if (month < 0) month = "0" + month;
       return "".concat(day, "/").concat(month, "/").concat(year);
-    },
-    getImg: function getImg() {
-      return __webpack_require__("./resources/js/components/Posts sync recursive ^.*$")("".concat(this.post.image));
     }
   }
 });
@@ -39081,7 +39079,7 @@ var render = function() {
       _c("figure", [
         _c("img", {
           staticClass: "img-fluid",
-          attrs: { src: _vm.getImg(_vm.post.image), alt: _vm.post.title }
+          attrs: { src: _vm.post.image, alt: _vm.post.title }
         })
       ]),
       _vm._v(" "),
@@ -51722,42 +51720,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_d7acf176_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/Posts sync recursive ^.*$":
-/*!*************************************************!*\
-  !*** ./resources/js/components/Posts sync ^.*$ ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./PostCard": "./resources/js/components/Posts/PostCard.vue",
-	"./PostCard.vue": "./resources/js/components/Posts/PostCard.vue",
-	"./PostList": "./resources/js/components/Posts/PostList.vue",
-	"./PostList.vue": "./resources/js/components/Posts/PostList.vue"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "./resources/js/components/Posts sync recursive ^.*$";
 
 /***/ }),
 
