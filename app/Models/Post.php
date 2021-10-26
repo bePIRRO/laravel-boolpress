@@ -14,7 +14,7 @@ class Post extends Model
     
     public function category()
     {
-        return $this->belongsTo("use App\Models\Category");
+        return $this->belongsTo("App\Models\Category");
     }
     
     protected $fillable = [
